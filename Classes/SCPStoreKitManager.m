@@ -195,11 +195,14 @@
 	if(_paymentTransactionStateRestoredBlock)
 	{
 		NSArray *restoredTransactions = [transactions filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"transactionState == %i", SKPaymentTransactionStateRestored]];
-		
-		if([restoredTransactions count] > 0)
-		{
-			_paymentTransactionStateRestoredBlock(restoredTransactions);
-		}
+
+		_paymentTransactionStateRestoredBlock(restoredTransactions);
+
+		#warning Payment transaction restored should really only be triggered when it has values.
+		//if([restoredTransactions count] > 0)
+		//{
+		//	_paymentTransactionStateRestoredBlock(restoredTransactions);
+		//}
 	}
 }
 
